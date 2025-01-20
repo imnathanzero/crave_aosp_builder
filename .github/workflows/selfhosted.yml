@@ -50,7 +50,7 @@ on:
       PRODUCT_NAME:
         description: "Product to build:"
         required: true
-        default: "rock"
+        default: "aosp_rock"
       BUILD_COMMAND:
         description: 'Command to be used for compiling:'
         required: true
@@ -508,7 +508,7 @@ jobs:
         echo "Run ID: ${{ github.run_id }}"; \
 
         # Build the ROM
-        $LUNCH && \
+        lunch ${{ github.event.inputs.PRODUCT_NAME }}-ap4a-${{ github.event.inputs.BUILD_TYPE }} && \
         make installclean && \
         ${{ github.event.inputs.BUILD_COMMAND }}"
       timeout-minutes: 1440
